@@ -4,9 +4,10 @@
 
 class Complex
 {
+  private:
+    int real, imag;
 
   public:
-    int real, imag;
 
     Complex(int real = 0, int imag = 0)
     {
@@ -27,10 +28,6 @@ class Complex
         c3 = c1 + c2 < C2 ESTA SENDO PASSADO POR REFERENCIA NESSA SINTAXE.
               ^AQUI C1 ESTA A DIREITA DO OPERADOR SOBRECARREGADO (+).
         */
-        std::cout << "C1 real:" << real << std::endl;
-        std::cout << "C1 imaginario:" << imag << std::endl;
-        std::cout << "C4 real:" << c.real << std::endl;
-        std::cout << "C4 imaginario:" << c.imag << std::endl;
         return Complex(this->real + c.real, this->imag + c.imag);
     }
 
@@ -44,11 +41,9 @@ class Complex
 /*
 Sobrecarga do operador <<
 */
-std::ostream &operator<<(std::ostream &output, const Complex &c)
-{
-    output << c.real << " + " << c.imag << "i" << std::endl; //Aqui todas as informaçõs são jogadas em output, depois no final retorna-se ele.
-
-    return (output);
+std::ostream &operator<<(std::ostream &output, Complex &c){
+    output << c.real << " + " << c.imag << "i" << std::endl;
+    return output;
 }
 
 /*
