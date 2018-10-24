@@ -18,17 +18,30 @@ class Complex
     const Complex operator+(const Complex &c) const;
     const Complex operator+(int a) const;
     const Complex operator*(const Complex &c) const;
-    const Complex operator++(int) {
-        Complex c1(*this);
-        real++; 
-        return c1;
-    }
+    const Complex operator++(int);
+    bool operator==(const Complex &c)const ;
+
+    
     //Funçoes Friends :
 
     friend std::ostream &operator<<(std::ostream &, Complex &);
-    friend const Complex operator+(int a , const Complex &c );
+    friend const Complex operator+(int a, const Complex &c);
 };
-const Complex operator+(int a , const Complex &c){
+bool Complex::operator==(const Complex &c) const {
+    if(this->real == c.real && this->imag == c.imag)
+        return true;
+    else 
+        return false;
+}
+
+const Complex Complex::operator++(int)
+{
+    Complex c1(*this);
+    real++;
+    return c1;
+}
+const Complex operator+(int a, const Complex &c)
+{
     return Complex(a + c.real, c.imag);
 }
 /*
@@ -41,7 +54,7 @@ const Complex operator+(int a , const Complex &c){
     c3 = c1 + c2 < C2 ESTA SENDO PASSADO POR REFERENCIA NESSA SINTAXE
               ^AQUI C1 ESTA A DIREITA DO OPERADOR SOBRECARREGADO (+).
         */
-const Complex Complex::operator+(const Complex &c) const 
+const Complex Complex::operator+(const Complex &c) const
 {
     return Complex(this->real + c.real, this->imag + c.imag);
 }
@@ -49,7 +62,7 @@ const Complex Complex::operator+(const Complex &c) const
 /*
     Sobrecarga do operador +, para somar o objeto com um numero inteiro
     */
-const Complex Complex::operator+(int a) const 
+const Complex Complex::operator+(int a) const
 { //{tipo de retorno} {classe referida} :: NOME DA FUNÇÃO
     return Complex(real + a, imag);
 }
@@ -69,7 +82,6 @@ std::ostream &operator<<(std::ostream &output, Complex &c)
     output << c.real << " + " << c.imag << "i" << std::endl;
     return output;
 }
-
 
 int main()
 {
@@ -93,5 +105,5 @@ int main()
     std::cout << c1;
 
     c3++;
-    std::cout<<c3<<std::endl;
+    std::cout << c3 << std::endl;
 }
