@@ -19,15 +19,18 @@ class Complex
     const Complex operator+(int a) const;
     const Complex operator*(const Complex &c) const;
     const Complex operator++(int);
-    bool operator==(const Complex &c)const ;
+    const bool operator==(const Complex &c)const ;
 
     
     //Funçoes Friends :
 
-    friend std::ostream &operator<<(std::ostream &, Complex &);
+    friend std::ostream &operator<<(std::ostream &, const Complex &);
     friend const Complex operator+(int a, const Complex &c);
 };
-bool Complex::operator==(const Complex &c) const {
+/*
+    VERIFICANDO SE OS OBJETOS SÃO IGUAIS, COMPARANDO SUAS VARIÁVEIS IMAGINÁROAS E REAIS
+*/
+const bool Complex::operator==(const Complex &c) const {
     if(this->real == c.real && this->imag == c.imag)
         return true;
     else 
@@ -72,12 +75,13 @@ const Complex Complex::operator+(int a) const
 const Complex Complex::operator*(const Complex &c) const
 {
     return Complex(this->real * c.real, this->imag * c.imag);
+    //return Complex(this->real *, this-> imag = 3)
 }
 
 /*
 Sobrecarga do operador <<
 */
-std::ostream &operator<<(std::ostream &output, Complex &c)
+std::ostream &operator<<(std::ostream &output, const Complex &c)
 {
     output << c.real << " + " << c.imag << "i" << std::endl;
     return output;
@@ -85,8 +89,8 @@ std::ostream &operator<<(std::ostream &output, Complex &c)
 
 int main()
 {
-
-    Complex c1(2, 3), c2(3, 7), c4(4, 6), c3;
+    int  a = 10;
+    Complex c1(2, 3), c2(3, 7), c4(4, 6), c3,c7,c8;
 
     std::cout << "RESULTADO DA SOMA: " << std::endl;
     c3 = c1 + c4; // O QUE ESTA ACONTECENDO AQUI É EQUIVALENTE À c3 = c1.operator+(c2);
@@ -99,11 +103,23 @@ int main()
     std::cout << "RESULTADO DA MULTIPLICAÇAO: " << std::endl;
     c1 = c1 * c2; //c1 = c1.operator*(c2);
     std::cout << "c1 = " << c1;
-
+    std::cout << "SOMA COM O TIPO INT À ESQUERDA DO OPERADOR: " << std::endl;
     c1 = 4 + c1;
-
     std::cout << c1;
-
+    std::cout << "<==================================>" << std::endl;
+    std::cout << "OPERADOR++ POS FIXADO: " << std::endl;
     c3++;
     std::cout << c3 << std::endl;
+    std::cout << "<==================================>" << std::endl;
+    std::cout << "VERIFICANDO SE DOIS OBJETOS SÃO IGUAIS: " << std::endl;
+    if(c7.operator==(c8))
+        std::cout << "IGUAIS: " << std::endl;
+    else
+        std::cout << "N IGUAIS: " << std::endl;
+    for(int i = 0; i++; i<10){
+        std::cin >> a+i;
+        std::cout << a;
+
+    }
+    
 }
