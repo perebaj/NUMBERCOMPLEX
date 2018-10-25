@@ -116,10 +116,6 @@ int main()
         std::cout << "IGUAIS: " << std::endl;
     else
         std::cout << "N IGUAIS: " << std::endl;
-    for(int i = 0; i++; i<10){
-        std::cin >> a+i;
-        std::cout << a;
-
-    }
+    
     
 }
